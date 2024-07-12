@@ -69,7 +69,7 @@ sudo pacman -Syu
 
 # Install packages
 for package in "${packages[@]}"; do
-    yay -S --noconfirm "$package"
+    yay --noconfirm -S "$package"
 done
 
 echo "All packages have been installed successfully."
