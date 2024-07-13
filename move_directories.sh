@@ -28,25 +28,26 @@ for SRC in "${!paths[@]}"; do
 
     # Check if source directory exists
     if [ ! -d "$SRC" ]; then
-        echo "Error: Source directory $SRC does not exist."
+        echo "[WARN]Error: Source directory $SRC does not exist."
         continue
     fi
 
     # Check if destination directory exists; if not, create it
     if [ ! -d "$DEST" ]; then
-        echo "Destination directory $DEST does not exist. Creating it..."
+        echo "[INFO] Destination directory $DEST does not exist. Creating it..."
         mkdir -p "$DEST"
     fi
 
     # Move contents from source to destination, overwriting existing files and directories
     for item in "$SRC"/*; do
         if [ -e "$item" ]; then
-            echo "Moving $(basename "$item") from $SRC to $DEST..."
+            echo "[INFO] Moving $(basename "$item") from $SRC to $DEST..."
             move "$item" "$DEST"
         fi
     done
 done
 
 sudo mv -f ./.bashrc $HOME/
+echo "[INFO] Generated bashrc file"
 
-echo "All specified contents have been moved to their destinations, overwriting existing files if necessary."
+echo "[INFO] All specified contents have been moved to their destinations, overwriting existing files if necessary."

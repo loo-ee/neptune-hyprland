@@ -12,10 +12,10 @@ run_script() {
     local script_name=$2
 
     if [ -x "$script_path" ]; then
-        echo "Running $script_name..."
+        echo "[INFO] Running $script_name..."
         "$script_path"
     else
-        echo "Error: $script_name not found or not executable."
+        echo "[WARN] Error: $script_name not found or not executable."
         exit 1
     fi
 }
@@ -35,6 +35,6 @@ echo -e "\n\033[1m\033[34m
 
 \033[0m"
 
-echo -e "\nAll scripts have been executed successfully.\n\033[1mWELCOME TO NEPTUNE!\033[0m"
+echo -e "\n[INFO] All scripts have been executed successfully.\n\033[1mWELCOME TO NEPTUNE!\033[0m"
 
 sudo systemctl start sddm

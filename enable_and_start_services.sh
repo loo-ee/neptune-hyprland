@@ -10,13 +10,13 @@ services=(
 enable_and_start_service() {
     local service=$1
     
-    echo "Enabling $service..."
+    echo "[INFO] Enabling $service..."
     sudo systemctl enable "$service"
     
-    echo "Starting $service..."
+    echo "[INFO] Starting $service..."
     sudo systemctl start "$service"
     
-    echo "$service enabled and started."
+    echo "[INFO] $service enabled and started."
 }
 
 # Loop through the services array and enable/start each service
@@ -24,4 +24,4 @@ for service in "${services[@]}"; do
     enable_and_start_service "$service"
 done
 
-echo "All specified services have been enabled and started."
+echo "[INFO] All specified services have been enabled and started."

@@ -23,10 +23,10 @@ extract() {
     local destination=$2
     
     if [ -f "$archive" ]; then
-        echo "Extracting $archive to $destination..."
+        echo "[INFO] Extracting $archive to $destination..."
         sudo tar -xzvf "$archive" -C "$destination"
     else
-        echo "Error: $archive not found."
+        echo "[WARN] Error: $archive not found."
     fi
 }
 
@@ -45,7 +45,7 @@ for archive in "${!files[@]}"; do
 done
 
 # Update font cache
-echo "Updating font cache..."
+echo "[INFO] Updating font cache..."
 fc-cache -fv
 
-echo "All files have been extracted and font cache updated."
+echo "[INFO] All files have been extracted and font cache updated."
