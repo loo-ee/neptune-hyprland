@@ -18,7 +18,7 @@ move() {
     if [ "$(dirname "$dest")" = "/usr/share" ]; then
         sudo mv -f "$src" "$dest"
     else
-        mv -f "$src" "$dest"
+        sudo mv -f "$src" "$dest"
     fi
 }
 
@@ -35,7 +35,7 @@ for SRC in "${!paths[@]}"; do
     # Check if destination directory exists; if not, create it
     if [ ! -d "$DEST" ]; then
         echo "[INFO] Destination directory $DEST does not exist. Creating it..."
-        mkdir -p "$DEST"
+        sudo mkdir -p "$DEST"
     fi
 
     # Move contents from source to destination, overwriting existing files and directories
