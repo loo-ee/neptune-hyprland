@@ -47,4 +47,6 @@ for SRC in "${!paths[@]}"; do
     done
 done
 
+sudo mv -f ./.bashrc $HOME/
+
 echo "All specified contents have been moved to their destinations, overwriting existing files if necessary."
