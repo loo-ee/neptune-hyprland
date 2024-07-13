@@ -21,9 +21,9 @@ run_script() {
 }
 
 # Run each script
+run_script "$INSTALL_PACKAGES_SCRIPT" "install_packages.sh"
 run_script "$MOVE_DIRECTORIES_SCRIPT" "move_directories.sh"
 run_script "$EXTRACT_AND_UPDATE_SCRIPT" "extract_and_update.sh"
-run_script "$INSTALL_PACKAGES_SCRIPT" "install_packages.sh"
 run_script "$START_SERVICES_SCRIPT" "enable_and_start_services.sh"
 
 # Decorative output with "Neptune" ASCII art
