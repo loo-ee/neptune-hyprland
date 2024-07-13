@@ -24,7 +24,7 @@ extract() {
     
     if [ -f "$archive" ]; then
         echo "Extracting $archive to $destination..."
-        tar -xzvf "$archive" -C "$destination"
+        sudo tar -xzvf "$archive" -C "$destination"
     else
         echo "Error: $archive not found."
     fi
@@ -37,7 +37,7 @@ for archive in "${!files[@]}"; do
     
     # Ensure the destination directory exists
     if [ ! -d "$destination" ]; then
-        mkdir -p "$destination"
+        sudo mkdir -p "$destination"
     fi
     
     # Extract the file
