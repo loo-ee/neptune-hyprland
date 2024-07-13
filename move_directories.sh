@@ -50,4 +50,20 @@ done
 sudo mv -f ./.bashrc $HOME/
 echo "[INFO] Generated bashrc file"
 
+THEME_NAME="sugar-candy"
+
+# Check if /etc/sddm.conf exists
+if [ ! -f /etc/sddm.conf ]; then
+    echo "Creating new /etc/sddm.conf..."
+    sudo touch /etc/sddm.conf
+fi
+
+# Add or update the theme setting in /etc/sddm.conf
+sudo bash -c "cat << EOF > /etc/sddm.conf
+[Theme]
+Current=$THEME_NAME
+EOF"
+
+echo "SDDM theme set to $THEME_NAME."
+
 echo "[INFO] All specified contents have been moved to their destinations, overwriting existing files if necessary."
