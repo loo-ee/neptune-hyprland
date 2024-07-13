@@ -62,6 +62,7 @@ packages=(
     starship
     fastfetch
     hyde-cli-git
+    zoxide
 )
 
 # Update the system
