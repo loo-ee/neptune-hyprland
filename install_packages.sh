@@ -58,7 +58,7 @@ packages=(
     ark
     vim
     neovim
-    code
+    visual-studio-code-bin
     starship
     fastfetch
     hyde-cli-git
