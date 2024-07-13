@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Define paths to the scripts
+EXTRACT_AND_UPDATE_SCRIPT="./restore_font.sh"
 INSTALL_PACKAGES_SCRIPT="./install_packages.sh"
 MOVE_DIRECTORIES_SCRIPT="./move_directories.sh"
-EXTRACT_AND_UPDATE_SCRIPT="./restore_font.sh"
 START_SERVICES_SCRIPT="./enable_and_start_services.sh"
 
 # Function to execute a script if it exists and is executable
