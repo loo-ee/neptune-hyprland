@@ -1,0 +1,8 @@
+[Added Associations]
+image/png=org.kde.gwenview.desktop;
+text/plain=nvim.desktop;
+
+[Default Applications]
+image/png=org.kde.gwenview.desktop;
+text/plain=nvim.desktop;
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
