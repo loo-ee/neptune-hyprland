@@ -4,7 +4,6 @@
 services=(
     "NetworkManager"
     "bluetooth"
-    "sddm"
 )
 
 # Function to enable and start a service

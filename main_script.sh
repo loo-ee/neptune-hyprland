@@ -6,22 +6,35 @@ MOVE_DIRECTORIES_SCRIPT="./move_directories.sh"
 EXTRACT_AND_UPDATE_SCRIPT="./restore_font.sh"
 START_SERVICES_SCRIPT="./enable_and_start_services.sh"
 
-# Check if install_packages.sh exists and is executable
-if [ -x "$INSTALL_PACKAGES_SCRIPT" ]; then
-    echo "Running install_packages.sh..."
-    "$INSTALL_PACKAGES_SCRIPT"
-else
-    echo "Error: $INSTALL_PACKAGES_SCRIPT not found or not executable."
-    exit 1
-fi
+# Function to execute a script if it exists and is executable
+run_script() {
+    local script_path=$1
+    local script_name=$2
 
-# Check if extract_and_update.sh exists and is executable
-if [ -x "$EXTRACT_AND_UPDATE_SCRIPT" ]; then
-    echo "Running extract_and_update.sh..."
-    "$EXTRACT_AND_UPDATE_SCRIPT"
-else
-    echo "Error: $EXTRACT_AND_UPDATE_SCRIPT not found or not executable."
-    exit 1
-fi
+    if [ -x "$script_path" ]; then
+        echo "Running $script_name..."
+        "$script_path"
+    else
+        echo "Error: $script_name not found or not executable."
+        exit 1
+    fi
+}
 
-echo "All scripts have been executed successfully.\nWELCOME TO NEPTUNE!"
+# Run each script
+run_script "$INSTALL_PACKAGES_SCRIPT" "install_packages.sh"
+run_script "$EXTRACT_AND_UPDATE_SCRIPT" "extract_and_update.sh"
+run_script "$START_SERVICES_SCRIPT" "enable_and_start_services.sh"
+
+# Decorative output with "Neptune" ASCII art
+echo -e "\n\033[1m\033[34m
+   _   _       _ _     _             
+  | | | |_ __ (_) |_  (_) __ _ _ __  
+  | | | | '_ \| | __| | |/ _\` | '_ \ 
+  | |_| | | | | | |_  | | (_| | | | |
+   \___/|_| |_|_|\__| |_|\__,_|_| |_|
+
+\033[0m"
+
+echo -e "\nAll scripts have been executed successfully.\n\033[1mWELCOME TO NEPTUNE!\033[0m"
+
+sudo systemctl start sddm
