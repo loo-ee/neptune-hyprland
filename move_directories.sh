@@ -10,25 +10,25 @@ declare -A paths=(
     ["./themes"]="$HOME/.themes"
 )
 
-# Function to move items with appropriate sudo handling
-move() {
+# Function to copy items with appropriate sudo handling
+copy() {
     local src=$1
     local dest=$2
 
     if [ "$(dirname "$dest")" = "/usr/share" ]; then
-        sudo mv -f "$src" "$dest"
+        sudo cp -rf "$src" "$dest"
     else
-        mv -f "$src" "$dest"
+        cp -rf "$src" "$dest"
     fi
 }
 
-# Loop through the associative array and move folders
+# Loop through the associative array and copy folders
 for SRC in "${!paths[@]}"; do
     DEST="${paths[$SRC]}"
 
     # Check if source directory exists
     if [ ! -d "$SRC" ]; then
-        echo "[WARN]Error: Source directory $SRC does not exist."
+        echo "[WARN] Error: Source directory $SRC does not exist."
         continue
     fi
 
@@ -38,18 +38,16 @@ for SRC in "${!paths[@]}"; do
         mkdir -p "$DEST"
     fi
 
-    # Move contents from source to destination, overwriting existing files and directories
-    for item in "$SRC"/*; do
-        if [ -e "$item" ]; then
-            echo "[INFO] Moving $(basename "$item") from $SRC to $DEST..."
-            move "$item" "$DEST"
-        fi
-    done
+    # Copy contents from source to destination, overwriting existing files and directories
+    cp -rf "$SRC"/* "$DEST"
+    echo "[INFO] Copied contents from $SRC to $DEST"
 done
 
-sudo mv -f ./.bashrc $HOME/
-echo "[INFO] Generated bashrc file"
+# Copy .bashrc file to home directory
+cp -f ./.bashrc "$HOME/"
+echo "[INFO] Generated .bashrc file"
 
+# Set SDDM theme to sugar-candy
 THEME_NAME="sugar-candy"
 
 # Check if /etc/sddm.conf exists
@@ -64,6 +62,6 @@ sudo bash -c "cat << EOF > /etc/sddm.conf
 Current=$THEME_NAME
 EOF"
 
-echo "SDDM theme set to $THEME_NAME."
+echo "[INFO] SDDM theme set to $THEME_NAME."
 
-echo "[INFO] All specified contents have been moved to their destinations, overwriting existing files if necessary."
+echo "[INFO] All specified contents have been copied to their destinations, overwriting existing files if necessary."
