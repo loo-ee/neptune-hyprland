@@ -27,7 +27,6 @@ packages=(
     rofi-lbonn-wayland-git
     waybar
     swww
-    swaylock-effects-git
     wlogout
     grimblast-git
     hyprpicker
@@ -64,6 +63,8 @@ packages=(
     hyde-cli-git
     zoxide
     hyprshade
+    hypridle
+    hyprlock
 )
 
 # Update the system
