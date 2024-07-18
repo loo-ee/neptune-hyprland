@@ -44,7 +44,7 @@ dummywall {
     orientation:                 horizontal;
     children:                    [ "mode-switcher" , "inputbar" ];
     background-color:            transparent;
-    background-image:            url("~/.cache/hyde/wall.thmb", height);
+    background-image:            url("~/.cache/neptune/wall.thmb", height);
 }
 
 

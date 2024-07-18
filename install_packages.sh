@@ -63,6 +63,7 @@ packages=(
     fastfetch
     hyde-cli-git
     zoxide
+    hyprshade
 )
 
 # Update the system
