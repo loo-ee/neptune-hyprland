@@ -37,7 +37,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       400px;
+    width:                       450px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -71,7 +71,7 @@ inputbar {
     spacing:                     10px;
     padding:                     100px 40px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/g.png", width);
+    background-image:            url("~/.config/hypr/wallpapers/jjk.png", width);
     text-color:                  @foreground;
     orientation:                 horizontal;
     children:                    [ "textbox-prompt-colon", "entry" ];

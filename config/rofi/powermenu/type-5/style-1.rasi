@@ -19,7 +19,7 @@ configuration {
     background-alt:              #252525;
     foreground:                  #FFFFFF;
     selected:                    #d9d9d9;
-    active:                      #6E77FF;
+    active:                      #003566;
     urgent:                      #8E3596;
 }
 
@@ -62,9 +62,9 @@ mainbox {
 inputbar {
     enabled:                     true;
     spacing:                     0px;
-    padding:                     100px 80px;
+    padding:                     150px 80px;
     background-color:            transparent;
-    background-image:            url("~/.config/hypr/wallpapers/chainsawman_sketch.png", width);
+    background-image:            url("~/.config/hypr/wallpapers/gojo.png", width);
     children:                    [ "textbox-prompt-colon", "dummy","prompt"];
 }
 
@@ -75,18 +75,18 @@ dummy {
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         " System";
+    str:                         " Session";
     padding:                     12px;
     border-radius:               12px;
-    background-color:            @urgent;
-    text-color:                  @background;
+    background-color:            @background;
+    text-color:                  @foreground;
 }
 prompt {
     enabled:                     true;
     padding:                     12px;
     border-radius:               12px;
     background-color:            @active;
-    text-color:                  @background;
+    text-color:                  @foreground;
 }
 
 /*****----- Listview -----*****/
