@@ -13,7 +13,21 @@
 dir="$HOME/.config/rofi/launchers/type-6"
 theme='style-1'
 
+case "${1}" in
+    d|--drun) r_mode="drun" ;; 
+    r|--run) r_mode="run" ;; 
+    w|--window) r_mode="window" ;;
+    f|--filebrowser) r_mode="filebrowser" ;;
+    h|--help) echo -e "$(basename "${0}") [action]"
+        echo "d :  drun mode"
+        echo "r :  run mode"
+        echo "w :  window mode"
+        echo "f :  filebrowser mode,"
+        exit 0 ;;
+    *) r_mode="drun" ;;
+esac
+
 ## Run
 rofi \
-    -show drun \
+    -show ${r_mode} \
     -theme ${dir}/${theme}.rasi

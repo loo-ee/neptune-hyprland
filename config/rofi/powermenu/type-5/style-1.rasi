@@ -73,7 +73,7 @@ dummy {
 }
 
 textbox-prompt-colon {
-    enabled:                     true;
+    enabled:                     false;
     expand:                      false;
     str:                         " Session";
     padding:                     12px;
