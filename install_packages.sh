@@ -65,6 +65,8 @@ packages=(
     hyprshade
     hypridle
     hyprlock
+    onefetch
+    gum
 )
 
 # Update the system

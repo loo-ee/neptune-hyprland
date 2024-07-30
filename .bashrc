@@ -15,6 +15,36 @@ PS1='[\u@\h \W]\$ '
 #   tmux kill-session -t delete-me && \
 #   tmux attach || tmux attach'
 
+# GUM
+
+styled_message() {
+  gum style --border double --margin "1" --padding "1" --bold --align center "$1"
+}
+
+get_commit_type() {
+  styled_message "Choose the type of commit:"
+  gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert"
+}
+
+# Function to prompt for commit scope
+get_commit_scope() {
+  gum input --placeholder "Enter the scope (optional)"
+}
+
+# Function to prompt for commit summary
+get_commit_summary() {
+  local type_scope="$1"
+  gum input --value "$type_scope: " --placeholder "Summary of this change"
+}
+
+# Function to prompt for commit description
+get_commit_description() {
+  gum write --placeholder "Details of this change"
+}
+
+
+# UTIL
+
 start_psql() {
   sudo systemctl start postgresql.service
 }
@@ -33,16 +63,84 @@ check_bat() {
 }
 
 gc1() {
-  file=$1
-  message=$2
-  git add $file
-  git commit -m "$message"
+  styled_message "Select files to stage for commit"
+
+  # List files and prompt user to select one or more files
+  FILES=$(ls -p | grep -v / | gum choose --no-limit)
+
+  if [ -z "$FILES" ]; then
+    styled_message "No files selected. Operation canceled."
+    exit 1
+  fi
+
+  # Stage selected files
+  for FILE in $FILES; do
+    git add "$FILE"
+  done
+
+  styled_message "Selected files staged for commit"
 }
 
 gcom() {
-  message=$1
-  git add .
-  git commit -m "$message"
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    styled_message "This is not a Git repository. Operation canceled."
+    return 1
+  fi
+
+  styled_message "Select uncommitted files to stage for commit"
+
+  # Get the list of uncommitted (modified or untracked) files
+  FILES=$(git status --short | awk '{print $2}')
+
+  if [ -z "$FILES" ]; then
+    styled_message "No uncommitted files found. Operation canceled."
+    return 1
+  fi
+
+  # Add an option to select all files
+  FILE_CHOICES=$(echo -e "All\n$FILES")
+  # Prompt user to select one or more files from the list of uncommitted files
+  SELECTED_FILES=$(echo "$FILES" | gum choose --no-limit)
+
+  if [ -z "$SELECTED_FILES" ]; then
+    git add .
+    styled_message "Adding all files"
+  else 
+    # Stage selected files
+    for FILE in $SELECTED_FILES; do
+      git add "$FILE"
+    done
+  fi
+
+  TYPE=$(get_commit_type)
+  SCOPE=$(get_commit_scope)
+
+  # Since the scope is optional, wrap it in parentheses if it has a value
+  test -n "$SCOPE" && SCOPE="($SCOPE)"
+
+  SUMMARY=$(get_commit_summary "$TYPE$SCOPE")
+  DESCRIPTION=$(get_commit_description)
+
+  # Ensure summary is not empty
+  if [ -z "$SUMMARY" ]; then
+    styled_message "Summary cannot be empty. Commit aborted!"
+    return 1
+  fi
+
+  # Confirmation spinner before committing
+  if gum confirm "Commit changes?"; then
+    if git commit -m "$SUMMARY" -m "$DESCRIPTION"; then
+      styled_message "Commit successful!"
+
+      if gum confirm "Push to remote?"; then
+        git push
+      fi
+    else
+      styled_message "Commit failed!"
+    fi
+  else
+    styled_message "Commit aborted!"
+  fi 
 }
 
 gcp() {
@@ -90,6 +188,10 @@ case $1 in
     ;;
 esac
 }
+
+# export PATH=$PATH:$HOME/.jdks/openjdk-22.0.1/bin
+export ANDROID_HOME=$HOME/Android/sdk
+
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
