@@ -18,30 +18,8 @@ PS1='[\u@\h \W]\$ '
 # GUM
 
 styled_message() {
-  gum style --width 60 --border double --margin "1" --padding "1" --bold --border-foreground 212 --align center "$1"
+  gum style --border double --margin "1" --padding "1" --bold --border-foreground 212 --align center "$1"
 }
-
-get_commit_type() {
-  styled_message "Choose the type of commit:"
-  gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert"
-}
-
-# Function to prompt for commit scope
-get_commit_scope() {
-  gum input --placeholder "Enter the scope (optional)"
-}
-
-# Function to prompt for commit summary
-get_commit_summary() {
-  local type_scope="$1"
-  gum input --value "$type_scope: " --placeholder "Summary of this change"
-}
-
-# Function to prompt for commit description
-get_commit_description() {
-  gum write --placeholder "Details of this change"
-}
-
 
 # UTIL
 
@@ -99,14 +77,15 @@ gcom() {
     styled_message "Selected files staged for commit"
   fi
 
-  TYPE=$(get_commit_type)
-  SCOPE=$(get_commit_scope)
+  styled_message "Choose the type of commit:"
+  TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
+  SCOPE=$(gum input --placeholder "Enter the scope (optional)")
 
   # Since the scope is optional, wrap it in parentheses if it has a value
   test -n "$SCOPE" && SCOPE="($SCOPE)"
-
-  SUMMARY=$(get_commit_summary "$TYPE$SCOPE")
-  DESCRIPTION=$(get_commit_description)
+  
+  SUMMARY=$(gum input --value "$SCOPE: " --placeholder "Summary of this change")
+  DESCRIPTION=$(gum write --placeholder "Details of this change")
 
   # Ensure summary is not empty
   if [ -z "$SUMMARY" ]; then
@@ -117,7 +96,6 @@ gcom() {
   # Confirmation spinner before committing
   if gum confirm "Commit changes?"; then
     if git commit -m "$SUMMARY" -m "$DESCRIPTION"; then
-      clear
       styled_message "Commit successful!"
 
       if gum confirm "Push to remote?"; then
