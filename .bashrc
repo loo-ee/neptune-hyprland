@@ -18,7 +18,8 @@ PS1='[\u@\h \W]\$ '
 # GUM
 
 styled_message() {
-  gum style --border double --margin "1" --padding "1" --bold --border-foreground 212 --align center "$1"
+  local border_foreground="${2:-212}"  # Use 212 if no argument is provided
+  gum style --border double --margin "1" --padding "1" --bold --border-foreground $border_foreground --align center "$1"
 }
 
 # UTIL
@@ -96,7 +97,7 @@ gcom() {
   # Confirmation spinner before committing
   if gum confirm "Commit changes?"; then
     if git commit -m "$SUMMARY" -m "$DESCRIPTION"; then
-      styled_message "Commit successful!"
+      styled_message "Commit successful!" "#FF0"
 
       if gum confirm "Push to remote?"; then
         gum spin --spinner dot --title "Committing to remote..." git push
