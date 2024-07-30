@@ -43,7 +43,7 @@ check_bat() {
 
 gcom() {
   if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    styled_message "This is not a Git repository. Operation canceled."
+    styled_message "This is not a Git repository. Operation canceled." 9
     return 1
   fi
 
@@ -51,7 +51,7 @@ gcom() {
   FILES=$(git status --short | awk '{print $2}')
 
   if [ -z "$FILES" ]; then
-    styled_message "No uncommitted files found. Operation canceled."
+    styled_message "No uncommitted files found. Operation canceled." 9
     return 1
   else
     styled_message "Select uncommitted files to stage for commit"
@@ -65,9 +65,9 @@ gcom() {
   if echo "$SELECTED_FILES" | grep -q ""; then
     if gum confirm "Commit all changes? Press no to exit."; then
       git add .
-      styled_message "All uncommitted files staged for commit"
+      styled_message "All uncommitted files staged for commit" 40
     else
-      styled_message "Operation cancelled"
+      styled_message "Operation cancelled" 9
       return 1
     fi
   else 
@@ -75,7 +75,7 @@ gcom() {
     for FILE in $SELECTED_FILES; do
       git add "$FILE"
     done
-    styled_message "Selected files staged for commit"
+    styled_message "Selected files staged for commit" 40
   fi
 
   styled_message "Choose the type of commit:"
@@ -90,23 +90,23 @@ gcom() {
 
   # Ensure summary is not empty
   if [ -z "$SUMMARY" ]; then
-    styled_message "Summary cannot be empty. Commit aborted!"
+    styled_message "Summary cannot be empty. Commit aborted!" 9
     return 1
   fi
 
   # Confirmation spinner before committing
   if gum confirm "Commit changes?"; then
     if git commit -m "$SUMMARY" -m "$DESCRIPTION"; then
-      styled_message "Commit successful!" "#FF0"
+      styled_message "Commit successful!" 40
 
       if gum confirm "Push to remote?"; then
         gum spin --spinner dot --title "Committing to remote..." git push
       fi
     else
-      styled_message "Commit failed!"
+      styled_message "Commit failed!" 9
     fi
   else
-    styled_message "Commit aborted!"
+    styled_message "Commit aborted!" 9
   fi 
 }
 
