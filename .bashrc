@@ -18,7 +18,7 @@ PS1='[\u@\h \W]\$ '
 # GUM
 
 styled_message() {
-  gum style --border double --margin "1" --padding "1" --bold --border-foreground 212 --align center "$1"
+  gum style --width 60 --border double --margin "1" --padding "1" --bold --border-foreground 212 --align center "$1"
 }
 
 get_commit_type() {
@@ -84,8 +84,13 @@ gcom() {
   SELECTED_FILES=$(echo "$FILE_CHOICES" | gum choose --no-limit)
   
   if echo "$SELECTED_FILES" | grep -q ""; then
-    git add .
-    styled_message "All uncommitted files staged for commit"
+    if gum confirm "Commit all changes? Press no to exit."; then
+      git add .
+      styled_message "All uncommitted files staged for commit"
+    else
+      styled_message "Operation cancelled"
+      return 1
+    fi
   else 
     # Stage selected files
     for FILE in $SELECTED_FILES; do
