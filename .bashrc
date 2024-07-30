@@ -112,6 +112,7 @@ gcom() {
   # Confirmation spinner before committing
   if gum confirm "Commit changes?"; then
     if git commit -m "$SUMMARY" -m "$DESCRIPTION"; then
+      clear
       styled_message "Commit successful!"
 
       if gum confirm "Push to remote?"; then
