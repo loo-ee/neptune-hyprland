@@ -149,6 +149,13 @@ case $1 in
 esac
 }
 
+rnh() {
+  history -a
+  HISTORY=$(tail -n 20 ~/.bash_history | grep -v '^#' | tac)
+  styled_message "Run a command again"
+  $(echo "$HISTORY" | gum choose)
+}
+
 # export PATH=$PATH:$HOME/.jdks/openjdk-22.0.1/bin
 export ANDROID_HOME=$HOME/Android/sdk
 
