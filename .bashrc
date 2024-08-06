@@ -85,7 +85,7 @@ gcom() {
   # Since the scope is optional, wrap it in parentheses if it has a value
   test -n "$SCOPE" && SCOPE="($SCOPE)"
   
-  SUMMARY=$(gum input --value "$SCOPE: " --placeholder "Summary of this change")
+  SUMMARY=$(gum input --value "$TYPE$SCOPE: " --placeholder "Summary of this change")
   DESCRIPTION=$(gum write --placeholder "Details of this change")
 
   # Ensure summary is not empty
@@ -156,8 +156,8 @@ rnh() {
   $(echo "$HISTORY" | gum choose)
 }
 
-# export PATH=$PATH:$HOME/.jdks/openjdk-22.0.1/bin
 export ANDROID_HOME=$HOME/Android/sdk
+export PATH=$PATH:/home/louie/.local/bin
 
 
 eval "$(starship init bash)"
