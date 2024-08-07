@@ -67,6 +67,7 @@ packages=(
     hyprlock
     onefetch
     gum
+    gnome-disk-utility
 )
 
 # Update the system
