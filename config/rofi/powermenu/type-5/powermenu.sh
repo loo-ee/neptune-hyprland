@@ -84,6 +84,8 @@ run_cmd() {
 				i3-msg exit
 			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+            else
+              hyprctl dispatch exit 0
 			fi
 		fi
 	else
