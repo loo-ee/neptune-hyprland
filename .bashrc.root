@@ -1,0 +1,9 @@
+set_fan_profile() {
+        if [[ $1 -eq 2 ]] || [[ $1 -eq 0 ]]
+        then 
+                echo $1 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1_enable
+        else 
+                echo "Profile must be Performance(0) or Automatic(2)"
+        fi
+}
+
