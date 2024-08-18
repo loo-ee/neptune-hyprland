@@ -1,4 +1,3 @@
-Here's a sample README file based on your requirements:
 
 ---
 
