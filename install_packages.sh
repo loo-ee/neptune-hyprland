@@ -68,6 +68,7 @@ packages=(
     onefetch
     gum
     gnome-disk-utility
+    atril
 )
 
 # Update the system
