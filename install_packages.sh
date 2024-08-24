@@ -53,7 +53,6 @@ packages=(
     qt6-wayland
     firefox
     kitty
-    dolphin
     ark
     vim
     neovim
@@ -69,6 +68,8 @@ packages=(
     gum
     gnome-disk-utility
     atril
+    gvfs-mtp
+    pcmanfm
 )
 
 # Update the system
