@@ -70,6 +70,7 @@ packages=(
     atril
     gvfs-mtp
     pcmanfm
+    firewalld
 )
 
 # Update the system
