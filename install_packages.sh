@@ -71,6 +71,7 @@ packages=(
     gvfs-mtp
     pcmanfm
     firewalld
+    zsh-theme-powerlevel10k-git
 )
 
 # Update the system
