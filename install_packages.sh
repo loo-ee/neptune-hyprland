@@ -72,6 +72,7 @@ packages=(
     pcmanfm
     firewalld
     zsh-theme-powerlevel10k-git
+    btrfs-assistant
 )
 
 # Update the system
