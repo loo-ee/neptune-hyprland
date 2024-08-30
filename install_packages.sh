@@ -18,7 +18,6 @@ packages=(
     blueman
     brightnessctl
     udiskie
-    sddm
     qt5-quickcontrols
     qt5-quickcontrols2
     qt5-graphicaleffects
@@ -59,7 +58,6 @@ packages=(
     visual-studio-code-bin
     starship
     fastfetch
-    hyde-cli-git
     zoxide
     hyprshade
     hypridle
@@ -73,6 +71,7 @@ packages=(
     firewalld
     zsh-theme-powerlevel10k-git
     btrfs-assistant
+    zsh
 )
 
 # Update the system
