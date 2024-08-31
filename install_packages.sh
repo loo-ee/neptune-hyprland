@@ -69,7 +69,6 @@ packages=(
     gvfs-mtp
     pcmanfm
     firewalld
-    zsh-theme-powerlevel10k-git
     btrfs-assistant
     zsh
 )

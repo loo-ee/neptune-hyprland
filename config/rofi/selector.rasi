@@ -20,7 +20,7 @@ window {
     border:                      0em;
     border-radius:               0em;
     border-color:                transparent;
-    background-color:            @main-bg;
+    background-color:            transparent;
 }
 mainbox {
     enabled:                     true;
@@ -62,7 +62,7 @@ element {
     spacing:                     0em;
     padding:                     0em;
     cursor:                      pointer;
-    background-color:            transparent;
+    background-color:            @main-bg;
     text-color:                  @main-fg;
 }
 element selected.normal {
