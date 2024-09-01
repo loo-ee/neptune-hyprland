@@ -11,7 +11,9 @@
   "modules-left": [
     "custom/padd",
     "custom/l_end",
+    "custom/archlogo",
     "hyprland/workspaces",
+    "custom/padd",
     "hyprland/window",
     "custom/r_end",
     "custom/padd"
@@ -20,14 +22,16 @@
   "modules-center": [
     "custom/padd",
     "custom/l_end",
-    "idle_inhibitor",
-    "clock",
+    "custom/name",
     "custom/r_end",
     "custom/padd"
   ],
 
   "modules-right": [
     "custom/padd",
+    "custom/l_end",
+    "idle_inhibitor",
+    "clock",
     "custom/l_end",
     "cpu",
     "memory",
@@ -38,6 +42,7 @@
     "network",
     "pulseaudio",
     "pulseaudio#microphone",
+    "custom/cliphist",
     "custom/r_end",
     "custom/l_end",
     "tray",
@@ -46,6 +51,29 @@
     "custom/r_end",
     "custom/padd"
   ],
+
+  "custom/archlogo": {
+    "format": " ",
+    "format-alt": "EndeavorOS",
+    "rotate": 0
+  },
+
+  "custom/name": {
+    "format": "ジャン・ルイ",
+    "format-alt": "Jann Louie",
+    "rotate": 0
+  },
+
+  "custom/cliphist": {
+    "format": "{}",
+    "rotate": 0,
+    "exec": "echo ; echo 󰅇 clipboard history",
+    "on-click": "sleep 0.1 && cliphist.sh c",
+    "on-click-right": "sleep 0.1 && cliphist.sh d",
+    "on-click-middle": "sleep 0.1 && cliphist.sh w",
+    "interval": 86400, // once every day
+    "tooltip": true
+  },
 
   "hyprland/workspaces": {
     "rotate": 0,
@@ -59,7 +87,7 @@
   },
 
   "hyprland/window": {
-    "format": " {}",
+    "format": "&#8984; {}",
     "rotate": 0,
     "separate-outputs": true,
     "rewrite": {
@@ -200,12 +228,6 @@
     "on-scroll-down": "volumecontrol.sh -i d",
     "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
     "scroll-step": 5
-  },
-
-  "custom/keybindhint": {
-    "format": " ",
-    "rotate": 0,
-    "on-click": "keybinds_hint.sh"
   },
 
   "tray": {
