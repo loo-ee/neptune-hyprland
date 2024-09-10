@@ -71,6 +71,7 @@ packages=(
     firewalld
     btrfs-assistant
     zsh
+    fzf
 )
 
 # Update the system
