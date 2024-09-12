@@ -72,6 +72,8 @@ packages=(
     btrfs-assistant
     zsh
     fzf
+    nodejs
+    npm
 )
 
 # Update the system
