@@ -9,14 +9,12 @@
   "reload_style_on_change": true,
 
   "modules-left": [
-    "custom/padd",
     "custom/l_end",
     "custom/archlogo",
     "hyprland/workspaces",
     "custom/padd",
     "hyprland/window",
-    "custom/r_end",
-    "custom/padd"
+    "custom/r_end"
   ],
 
   "modules-center": [
@@ -28,33 +26,28 @@
   ],
 
   "modules-right": [
-    "custom/padd",
     "custom/l_end",
     "idle_inhibitor",
     "clock",
-    "custom/l_end",
     "cpu",
     "memory",
     "custom/cpuinfo",
-    "custom/r_end",
-    "custom/l_end",
+    "custom/padd",
+    "custom/padd",
     "backlight",
     "network",
     "pulseaudio",
     "pulseaudio#microphone",
     "custom/cliphist",
-    "custom/r_end",
-    "custom/l_end",
     "tray",
     "battery",
     "custom/power",
-    "custom/r_end",
-    "custom/padd"
+    "custom/l_end"
   ],
 
   "custom/archlogo": {
     "format": " ",
-    "format-alt": "EndeavorOS",
+    "format-alt": "EndeavourOS",
     "rotate": 0
   },
 

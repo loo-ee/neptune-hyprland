@@ -3,8 +3,10 @@
 @define-color main-bg #262626;
 @define-color main-fg #d9d9d9;
 
-@define-color wb-act-bg #d9d9d9;
-@define-color wb-act-fg #262626;
+@define-color wb-act-fg #FFF;
 
 @define-color wb-hvr-bg #a6a6a6;
 @define-color wb-hvr-fg #262626;
+
+@define-color idle-window #858383;
+
