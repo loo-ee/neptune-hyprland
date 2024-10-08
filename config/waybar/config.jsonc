@@ -29,11 +29,11 @@
     "custom/l_end",
     "idle_inhibitor",
     "clock",
+    "custom/separator",
     "cpu",
     "memory",
     "custom/cpuinfo",
-    "custom/padd",
-    "custom/padd",
+    "custom/separator",
     "backlight",
     "network",
     "pulseaudio",
@@ -44,6 +44,11 @@
     "custom/power",
     "custom/l_end"
   ],
+  
+  "custom/separator": {
+    "format": " | ",
+    "rotate": 0
+  },
 
   "custom/archlogo": {
     "format": " ",
