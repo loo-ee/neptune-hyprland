@@ -69,11 +69,9 @@ alias vim='nvim'
 alias c='clear'
 alias journal='journalctl -p 3 -xb'
 
-alias mux='pgrep -vx tmux > /dev/null && \
-  tmux new -d -s delete-me && \
-  tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
-  tmux kill-session -t delete-me && \
-  tmux attach || tmux attach'
+alias zd='/home/louie/.local/bin/zig-linux-x86_64-0.14.0-dev.1860+2e2927735/zig'
+alias rustlings='/home/louie/.cargo/bin/rustlings'
+alias pokemon='pokemon-colorscripts -r'
 
 # GUM
 
